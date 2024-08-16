@@ -1,4 +1,5 @@
 from fuzzywuzzy import fuzz
+from codebleu import calc_codebleu
 
 def exact_match_score(predictions, ground_truths):
     """
@@ -91,3 +92,38 @@ def accuracy_at_k(prediction_list, golden_index_list, k):
             acc += 1
         
     return round(acc / len(golden_index_list), 5)
+
+def codebleu_score(predictions, ground_truths, language, weight=[0.25, 0.25, 0.25, 0.25]):
+    
+    """
+    This function computes the average codebleu score between the predicted codes and the ground truth codes. 
+    It returns a float value between 0 and 1 indicating the degree of similarity between the predicted codes 
+    and the ground truth codes, where a value of 1 means all the predicted codes are identical to their corresponding 
+    ground truth codes and a value of 0 means none of the predicted codes are similar to their corresponding 
+    ground truth codes.
+    
+    Args:
+    predictions: list, predicted codes
+    ground_truths: list, ground truth codes
+    language: str, the programming language of the codes
+    weight: list, the weights for each n-gram
+    
+    Returns:
+    Float, the average codebleu score between the predicted codes and the ground truth codes.
+    """
+    if len(predictions) != len(ground_truths):
+        raise ValueError("The length of the predicted codes and the ground truth codes should be equal.")
+    
+    # remove \r for both pred and gt
+    predictions = [pred.replace("\r", "") for pred in predictions]
+    ground_truths = [gt.replace("\r", "") for gt in ground_truths]
+    
+    res_list = calc_codebleu(
+        ground_truths,
+        predictions,
+        language,
+        weight,
+        tokenizer=None
+    )
+
+    return res_list['codebleu']

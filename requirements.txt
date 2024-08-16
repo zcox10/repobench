@@ -5,3 +5,4 @@ fuzzywuzzy
 difflib
 tqdm
 fire
+codebleu
