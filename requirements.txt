@@ -6,3 +6,6 @@ difflib
 tqdm
 fire
 codebleu
+python-Levenshtein
+tree-sitter-python
+tree-sitter-java
