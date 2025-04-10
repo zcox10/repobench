@@ -171,7 +171,8 @@ def main(
     tokenizer.padding_side = "left"
     tokenizer.pad_token_id = tokenizer.eos_token_id
 
-    model = AutoModelForCausalLM.from_pretrained(model_name, trust_remote_code=True).cuda()
+    # model = AutoModelForCausalLM.from_pretrained(model_name, trust_remote_code=True).cuda()
+    model = AutoModelForCausalLM.from_pretrained(model_name, trust_remote_code=True)
     model.generation_config.pad_token_id = tokenizer.pad_token_id
 
     # Create the save directory
@@ -188,7 +189,8 @@ def main(
                 for d in batch_data
             ]
 
-            batch_inputs = tokenizer(batch_prompts, return_tensors="pt", padding=True).to("cuda")
+            # batch_inputs = tokenizer(batch_prompts, return_tensors="pt", padding=True).to("cuda")
+            batch_inputs = tokenizer(batch_prompts, return_tensors="pt", padding=True)
             batch_outputs = model.generate(
                 **batch_inputs,
                 max_new_tokens=max_new_tokens,
