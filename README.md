@@ -27,7 +27,6 @@
 
 - *Jan 16th, 2024*: RepoBench is accepted to ICLR 2024! 🎉
 
-
 ## 🛠️ Installation
 
 ```bash
@@ -35,7 +34,7 @@ git clone https://github.com/Leolty/repobench.git
 cd repobench
 ```
 
-> [!NOTE] 
+> [!NOTE]
 > There is a `requirements.txt` file, which contains dependencies for reproducing the results in the paper. If you are only interested in the data, you can skip the installation of dependencies.
 
 ## ⚙️ Description of Settings
@@ -46,7 +45,6 @@ As discussed in the paper, we have three settings for each task:
 - `cross_file_random`: Masks a random line where a module from a different file is used (not the first usage).
 - `in_file`: Masks a random line that has no cross-file dependency.
 
-
 ## 📥 Load Data
 
 ```python
@@ -56,6 +54,7 @@ dataset = load_dataset("tianyang/repobench_python_v1.1", ignore_verifications=Tr
 ```
 
 For more details, visit the Hugging Face dataset pages:
+
 - Python: [🤗 Repobench Python V1.1](https://huggingface.co/datasets/tianyang/repobench_python_v1.1)
 - Java: [🤗 Repobench Java V1.1](https://huggingface.co/datasets/tianyang/repobench_java_v1.1)
 
@@ -97,7 +96,6 @@ The script will output scores for each level (`cross_file_first`, `cross_file_ra
 
 This branch of the repository is specifically for RepoBench v1.1. For the results presented in our ICLR 2024 paper, which used the initial version of RepoBench, please refer to the [`archive/v0` branch](https://github.com/Leolty/repobench/tree/archive/v0) of this repository.
 
-
 ## 📝 Citation
 
 If you use RepoBench in your research, please consider citing us:
@@ -111,9 +109,3 @@ If you use RepoBench in your research, please consider citing us:
       booktitle={International Conference on Learning Representations}
 }
 ```
-
-
-
-
-
-
